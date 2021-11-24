@@ -1,3 +1,11 @@
 <p>
-    {{goal.description}}
+    {{goal.description}},
+
 </p>
+To Consult: {{goal.owner}}
+<br>
+
+<p>This goal will be complete in {{goal.completeDate|dateCount}} days</p>
+<br>
+<button (click)=goalComplete(true)>Goal Complete</button>
+<br>
