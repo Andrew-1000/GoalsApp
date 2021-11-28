@@ -1,27 +1,45 @@
 <div class="container-fluid">
     <h2 class="text-center">Create New Goal</h2>
     <hr>
-    <form #goalForm="ngForm">
+    <form (ngSubmit)="submitGoal()" #goalForm="ngForm">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" required class="form-control" id="name" [(ngModel)]="newGoal.name" name="name" #name='ngModel'>
             <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
                 <p>Name is required</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea [(ngModel)]="newGoal.description" name="description" #description='ngModel' id="description" class="form-control" rows="4" required></textarea>
+            <div class="alert alert-danger" [hidden]="description.valid || description.pristine">
+                <p>Description is required</p>
             </div>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <textarea name="description" id="description" class="form-control" rows="4" required></textarea>
-        </div>
-        <div class="form-group">
             <label for="owner">Owner</label>
-            <input name="owner" required type="text" id="owner" class="form-control">
+            <input [(ngModel)]="newGoal.owner" #owner="ngModel" name="owner" required type="text" id="owner" class="form-control">
+            <div class="alert alert-danger" [hidden]="owner.valid || owner.pristine">
+                <p>
+                    Owner is required
+                </p>
+            </div>
         </div>
+
 
         <div class="form-group">
             <label for="complete">Completion</label><br>
-            <input type='date' id="complete" required>
+            <input type='date' id="complete" [(ngModel)]="newGoal.completeDate" name="completeDate" #completeDate="ngModel" required>
+            <div [hidden]="completeDate.valid || completeDate.pristine" class=" alert alert-danger">
+                <p>Date is required</p>
+            </div>
         </div>
+
+        <button class="btn btn-success" type="submit">Add Goal</button>
     </form>
 
 </div>
